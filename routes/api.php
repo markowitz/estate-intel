@@ -21,8 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('external-books', [ExternalBooksController::class, 'searchBooks']);
-Route::post('books', [BooksController::class, 'create']);
-Route::get('books', [BooksController::class, 'read']);
-Route::patch('books/{book}', [BooksController::class, 'update']);
-Route::delete('books/{book}', [BooksController::class, 'delete']);
-Route::get('books/{book}', [BooksController::class, 'show']);
+Route::controller(BooksController::class)->prefix('books')->group(function () {
+    Route::post('/', 'create');
+    Route::get('/', 'read');
+    Route::patch('{book}', 'update');
+    Route::delete('{book}', 'delete');
+    Route::get('{book}', 'show');
+
+});
