@@ -32,6 +32,11 @@ class ExternalControllerTest extends TestCase
         ];
     }
 
+    public function tearDown(): void
+    {
+        parent::tearDown();
+    }
+
     public function test_search_external_books()
     {   
         Http::fake([
