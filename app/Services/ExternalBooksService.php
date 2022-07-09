@@ -5,21 +5,11 @@ namespace App\Services;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ExternalBooksService
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
-
-    public function __construct()
-    {
-        $this->client = new Client([
-            'base_uri' => env('OFFICE_API')
-        ]);
-    }
 
     /**
      * Search external api books
@@ -33,11 +23,10 @@ class ExternalBooksService
         if (!$query) {
             return [];
         }
-        
+       
         //Cache query search for 2 hours, since there's a rate limit
         return Cache::remember($query, "7200", function () use ($query) {
-                $response =  $this->client->get("books?${query}");
-
+                $response =  Http::get(env('OFFICE_API')."/books?${query}");
                 return json_decode($response->getBody()->getContents(), true);
             });
     }

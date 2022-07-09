@@ -15,7 +15,7 @@ class BooksResource extends ResourceCollection
      */
     public function toArray($request)
     {
-
+        
         $data = [
             "name" => $this["name"],
             "isbn" => $this["isbn"],
