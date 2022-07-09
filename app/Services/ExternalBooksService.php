@@ -34,7 +34,7 @@ class ExternalBooksService
             return [];
         }
         
-        //Cache query search, since there's a rate limit
+        //Cache query search for 2 hours, since there's a rate limit
         return Cache::remember($query, "7200", function () use ($query) {
                 $response =  $this->client->get("books?${query}");
 

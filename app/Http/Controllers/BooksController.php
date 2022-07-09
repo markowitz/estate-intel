@@ -24,7 +24,7 @@ class BooksController extends Controller
             'country' => 'string|required',
             'number_of_pages' => 'integer|required',
             'publisher' => 'string|required',
-            'release_date' => 'date'
+            'release_date' => 'date|required'
         ]);
 
         try {
@@ -32,7 +32,7 @@ class BooksController extends Controller
             return $this->jsonResponse([
                 "book" => new BooksResource($book->toArray())
             ], Response::HTTP_CREATED, "success");
-            
+
         } catch (\Exception $e) {
             return $this->jsonResponse([], 
             Response::HTTP_BAD_REQUEST, 

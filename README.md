@@ -12,3 +12,6 @@ This is a simple crud app to fetch data from external api, and perform crud oper
 # API documentation
 https://documenter.getpostman.com/view/3599318/UzJPLEan
 
+# RUN UNIT TEST
+```php artisan test```
+
