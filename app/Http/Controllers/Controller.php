@@ -31,7 +31,6 @@ class Controller extends BaseController
         if ($message) {
             $responseData["message"] = $message;
         }
-        krsort($responseData);
 
         return response()->json($responseData);
     }

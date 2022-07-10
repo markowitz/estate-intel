@@ -28,7 +28,7 @@ class BooksResource extends ResourceCollection
         ];
 
         if (isset($this['id'])) {
-            $data = ['id' => $this['id']] + $data;
+            $data['id'] = $this['id'];
         }
 
 
