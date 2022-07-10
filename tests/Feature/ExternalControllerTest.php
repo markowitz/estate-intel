@@ -54,7 +54,7 @@ class ExternalControllerTest extends TestCase
     public function test_search_external_books_no_data()
     {
         Http::fake([
-            env('OFFICE_API').'/books?*' => Http::response([])
+            env('OFFICE_API').'/*' => Http::response([])
         ]);
         
         $this->json('GET', '/api/external-books?country=United Statess')
